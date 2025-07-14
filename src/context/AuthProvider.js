@@ -33,11 +33,17 @@ const AuthProvider = ({ children }) => {
   }
 
   const signUp = (username, password) => {
-    setFakeUser(prevUsers => [...prevUsers, {username, password}]);
-    setUser(username);
-    window.localStorage.setItem("username", username);
-    toast.success("New User created !");
-    setError("");
+    if (username && password) {
+      setFakeUser(prevUsers => [...prevUsers, { username, password }]);
+      setUser(username);
+      window.localStorage.setItem("username", username);
+      toast.success("New User created !");
+      setError("");
+    }
+    else {
+      setError("Enter Username and Password");
+    }
+
   }
 
   const logout = () => {
